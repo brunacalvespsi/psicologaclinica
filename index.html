@@ -356,16 +356,18 @@
     .sobre__inner {
       max-width: 1200px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: var(--space-xl);
+      display: flex;
+      gap: 60px;
       align-items: center;
-      position: relative;
-      z-index: 1;
     }
 
     .sobre__image-block {
-      position: relative;
+      flex: 0 0 400px;
+    }
+    
+    .sobre__content {
+      flex: 1;
+
     }
 
     .sobre__img-wrap {
