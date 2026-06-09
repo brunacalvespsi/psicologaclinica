@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bruna C. Alves — Psicóloga Clínica</title>
+  <link rel="preconnect" href="[fonts.googleapis.com](https://fonts.googleapis.com)" />
+  <link rel="preconnect" href="[fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin />
+  <link
+    href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap)"
+    rel="stylesheet" />
+  <style>
+    /* ========== RESET & BASE ========== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --color-bg: #FAF8F5;
+      --color-bg-alt: #F3EDE7;
+      --color-text: #2C2825;
+      --color-text-muted: #6B635A;
+      --color-accent: #8B7355;
+      --color-accent-light: #A89070;
+      --color-white: #FFFFFF;
+      --color-border: #E5DFD8;
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'DM Sans', -apple-system, sans-serif;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-2xl: 6rem;
+
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+
+      --transition: 0.3s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    em {
+      font-style: italic;
+      color: var(--color-accent);
+    }
+
+    /* ========== UTILITIES ========== */
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      display: block;
+      margin-bottom: var(--space-sm);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 2rem;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition);
+      border: none;
+    }
+
+    .btn--primary {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+    }
+
+    .btn--primary:hover {
+      background-color: var(--color-accent-light);
+      transform: translateY(-2px);
+    }
+
+    .btn--ghost {
+      background-color: transparent;
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn--ghost:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .btn--full {
+      width: 100%;
+    }
+
+    /* ========== NAV ========== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-md) var(--space-lg);
+      background-color: rgba(250, 248, 245, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav__logo {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    .nav__cta {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--color-accent);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+
+    .nav__cta:hover {
+      background-color: var(--color-accent);
+      color: var(--color-white);
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: var(--space-xl);
+      padding: calc(80px + var(--space-xl)) var(--space-lg) var(--space-xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero__bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-serif);
+      font-size: clamp(8rem, 20vw, 20rem);
+      font-weight: 300;
+      color: var(--color-border);
+      opacity: 0.3;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+    }
+
+    .hero__tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-md);
+    }
+
+    .hero__headline {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: var(--space-md);
+      color: var(--color-text);
+    }
+
+    .hero__sub {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .hero__image-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero__image-frame {
+      position: relative;
+      max-width: 450px;
+      margin-left: auto;
+    }
+
+    .hero__image-inner {
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-border) 100%);
+      border-radius: var(--radius-lg);
+    }
+
+    .hero__image-quote {
+      position: absolute;
+      bottom: var(--space-lg);
+      left: calc(-1 * var(--space-lg));
+      background-color: var(--color-white);
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      line-height: 1.4;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    }
+
+    .hero__float-card {
+      position: absolute;
+      top: var(--space-lg);
+      right: calc(-1 * var(--space-md));
+      background-color: var(--color-accent);
+      color: var(--color-white);
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .float-card__num {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .float-card__label {
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
+
+    /* ========== PAIN / IDENTIFICATION ========== */
+    .pain {
+      padding: var(--space-2xl) var(--space-lg);
+      background-color: var(--color-bg-alt);
+    }
+
+    .pain__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .pain__headline {
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .pain__cards {
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    .pain__card {
+      background-color: var(--color-white);
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      display: flex;
+      gap: var(--space-sm);
+      align-items: flex-start;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    .pain__card-icon {
+      color: var(--color-accent);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .pain__card p {
+      color: var(--color-text-muted);
+    }
+
+    .pain__conclusion {
+      margin-top: var(--space-lg);
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: var(--color-accent);
+      font-style: italic;
+    }
+
+    /* ========== SOBRE ========== */
+    .sobre {
+      padding: var(--space-2xl) var(--space-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sobre__decorative {
+      position: absolute;
+      top: -5%;
+      right: -5%;
+      font-family: var(--font-serif);
+      font-size: 40rem;
+      font-weight: 300;
+      color: var(--color-border);
+      opacity: 0.2;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .sobre__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: var(--space-xl);
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sobre__image-block {
+      position: relative;
+    }
+
+    .sobre__img-wrap {
+      max-width: 400px;
+    }
+
+    .sobre__img-placeholder {
+      aspect-ratio: 4/5;
+      background: linear-gradient(135deg, var(--color-bg-alt) 0%, var(--color-border) 100%);
+      border-radius: var(--radius-lg);
+    }
+
+    .sobre__crp {
+      position: absolute;
+      bottom: var(--space-md);
+      left: var(--space-md);
+      background-color: var(--color-white);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .sobre__headline {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      margin-bottom: var(--space-md);
+    }
+
+    .sobre__text {
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-sm);
+    }
+
+    .sobre__badges {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-top: var(--space-lg);
+    }
+
+    .badge {
+      background-color: var(--color-bg-alt);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-md);
+      text-align: center;
+    }
+
+    .badge__title {
+      display: block;
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: var(--color-text);
+    }
+
+    .badge__sub {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ========== AREAS ========== */
+    .areas {
+      padding: var(--space-2xl) var(--space-lg);
+      background-color: var(--color-bg-alt);
+    }
+
+    .areas__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .areas__header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .areas__headline {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+    }
+
+    .areas__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .area-card {
+      background-color: var(--color-white);
+      padding: var(--space-lg);
+      border-radius: var(--radius-lg);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .area-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    .area-card__num {
+      font-family: var(--font-serif);
+      font-size: 2.5rem;
+      color: var(--color-border);
+      margin-bottom: var(--space-sm);
+    }
+
+    .area-card__title {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .area-card__text {
+      font-size: 0.9375rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ========== COMO FUNCIONA ========== */
+    .como {
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    .como__inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .como__header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .como__headline {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+    }
+
+    .como__steps {
+      position: relative;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: var(--space-md);
+      padding-bottom: var(--space-lg);
+      position: relative;
+    }
+
+    .step__line {
+      position: absolute;
+      left: 19px;
+      top: 20px;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--color-border);
+    }
+
+    .step:last-child .step__line {
+      display: none;
+    }
+
+    .step__dot {
+      width: 40px;
+      height: 40px;
+      background-color: var(--color-accent);
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step__dot--last {
+      background-color: var(--color-accent);
+    }
+
+    .step__content {
+      padding-top: 0.25rem;
+    }
+
+    .step__num {
+      font-family: var(--font-serif);
+      font-size: 0.875rem;
+      color: var(--color-accent);
+    }
+
+    .step__title {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .step__text {
+      color: var(--color-text-muted);
+    }
+
+    /* ========== DEPOIMENTOS ========== */
+    .depo {
+      padding: var(--space-2xl) var(--space-lg);
+      background-color: var(--color-bg-alt);
+      overflow: hidden;
+    }
+
+    .depo__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .depo__header {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .depo__headline {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+    }
+
+    .depo__track-wrap {
+      overflow: hidden;
+      margin-bottom: var(--space-md);
+    }
+
+    .depo__track {
+      display: flex;
+      gap: var(--space-md);
+      transition: transform 0.5s ease;
+    }
+
+    .depo-card {
+      flex: 0 0 calc(33.333% - var(--space-md));
+      min-width: 300px;
+      background-color: var(--color-white);
+      padding: var(--space-lg);
+      border-radius: var(--radius-lg);
+    }
+
+    .depo-card__stars {
+      color: var(--color-accent);
+      margin-bottom: var(--space-sm);
+      letter-spacing: 0.2em;
+    }
+
+    .depo-card__text {
+      font-family: var(--font-serif);
+      font-size: 1.125rem;
+      font-style: italic;
+      margin-bottom: var(--space-md);
+      line-height: 1.6;
+    }
+
+    .depo-card__name {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+
+    .depo__controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+    }
+
+    .depo-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--color-border);
+      background-color: var(--color-white);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-size: 1rem;
+    }
+
+    .depo-btn:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .depo-dots {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .depo-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--color-border);
+      cursor: pointer;
+      transition: background-color var(--transition);
+    }
+
+    .depo-dots span.active {
+      background-color: var(--color-accent);
+    }
+
+    /* ========== QUOTE SECTION ========== */
+    .quote-section {
+      padding: var(--space-2xl) var(--space-lg);
+      background-color: var(--color-text);
+    }
+
+    .quote-section__inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .quote-section__text {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      color: var(--color-white);
+      line-height: 1.4;
+    }
+
+    .quote-section__text em {
+      color: var(--color-accent-light);
+    }
+
+    /* ========== CONTATO ========== */
+    .contato {
+      padding: var(--space-2xl) var(--space-lg);
+    }
+
+    .contato__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .contato__headline {
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      margin-bottom: var(--space-md);
+    }
+
+    .contato__text {
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-lg);
+    }
+
+    .contato__info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .contato__link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--color-accent);
+      font-weight: 500;
+      transition: opacity var(--transition);
+    }
+
+    .contato__link:hover {
+      opacity: 0.7;
+    }
+
+    .contato__link-icon {
+      font-size: 1.25rem;
+    }
+
+    .contact-form {
+      background-color: var(--color-bg-alt);
+      padding: var(--space-lg);
+      border-radius: var(--radius-lg);
+    }
+
+    .form-field {
+      margin-bottom: var(--space-md);
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: var(--space-xs);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      background-color: var(--color-white);
+      transition: border-color var(--transition);
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      margin-top: var(--space-sm);
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      padding: var(--space-lg);
+      background-color: var(--color-bg-alt);
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .footer__logo {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .footer__tagline {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-sm);
+    }
+
+    .footer__copy {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ========== ANIMATIONS ========== */
+    .reveal-up,
+    .reveal-left,
+    .reveal-right {
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal-up {
+      transform: translateY(30px);
+    }
+
+    .reveal-left {
+      transform: translateX(-30px);
+    }
+
+    .reveal-right {
+      transform: translateX(30px);
+    }
+
+    .reveal-up.visible,
+    .reveal-left.visible,
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translate(0);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 968px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero__content {
+        max-width: 100%;
+      }
+
+      .hero__actions {
+        justify-content: center;
+      }
+
+      .hero__image-wrap {
+        display: none;
+      }
+
+      .pain__inner,
+      .sobre__inner,
+      .contato__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .sobre__decorative {
+        display: none;
+      }
+
+      .depo-card {
+        flex: 0 0 calc(50% - var(--space-md));
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --space-lg: 1.5rem;
+        --space-xl: 2.5rem;
+        --space-2xl: 4rem;
+      }
+
+      .nav {
+        padding: var(--space-sm);
+      }
+
+      .nav__logo {
+        font-size: 1rem;
+      }
+
+      .nav__cta {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+      }
+
+      .btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 0.8125rem;
+      }
+
+      .areas__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .depo-card {
+        flex: 0 0 100%;
+        min-width: 100%;
+      }
+
+      .br-desk {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__logo">Bruna C. Alves</div>
+    <a href="#contato" class="nav__cta">Agendar consulta</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero__bg-text" aria-hidden="true">PSICOLOGIA</div>
+    <div class="hero__content">
+      <div class="hero__tag reveal-up">Psicóloga Clínica · CRP 16/09314</div>
+      <h1 class="hero__headline reveal-up delay-1">
+        Para a mulher que<br />
+        carrega tudo e<br />
+        <em>esquece de si.</em>
+      </h1>
+      <p class="hero__sub reveal-up delay-2">
+        Atendimento online com escuta profunda,<br class="br-desk" />
+        ética e acolhedora. Um espaço só seu.
+      </p>
+      <div class="hero__actions reveal-up delay-3">
+        <a href="#contato" class="btn btn--primary">Quero meu espaço</a>
+        <a href="#sobre" class="btn btn--ghost">Conhecer Bruna</a>
+      </div>
+    </div>
+    <div class="hero__image-wrap reveal-right delay-1">
+      <div class="hero__image-frame">
+        <div class="hero__image-inner"></div>
+        <div class="hero__image-quote">
+          <span>"Cuidar de si<br />é um ato de<br /><em>coragem.</em>"</span>
+        </div>
+      </div>
+      <div class="hero__float-card">
+        <span class="float-card__num">+200</span>
+        <span class="float-card__label">sessões realizadas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOR / IDENTIFICAÇÃO -->
+  <section class="pain" id="voce">
+    <div class="pain__inner">
+      <div class="pain__left reveal-left">
+        <span class="section-label">você se reconhece?</span>
+        <h2 class="pain__headline">
+          Você não está<br />
+          <em>desmotivada.</em><br />
+          Você está no<br />
+          automático.
+        </h2>
+      </div>
+      <div class="pain__right">
+        <div class="pain__cards">
+          <div class="pain__card reveal-up delay-1">
+            <span class="pain__card-icon">◦</span>
+            <p>Sente que vive para os outros e no fim do dia não sobra nada pra você</p>
+          </div>
+          <div class="pain__card reveal-up delay-2">
+            <span class="pain__card-icon">◦</span>
+            <p>A ansiedade te acompanha até na hora de descansar</p>
+          </div>
+          <div class="pain__card reveal-up delay-3">
+            <span class="pain__card-icon">◦</span>
+            <p>Relacionamentos te esgotam mais do que te nutrem</p>
+          </div>
+          <div class="pain__card reveal-up delay-4">
+            <span class="pain__card-icon">◦</span>
+            <p>Você sabe que precisa mudar, mas o medo paralisa</p>
+          </div>
+        </div>
+        <p class="pain__conclusion reveal-up delay-5">
+          Nada disso é fraqueza.<br />É sinal de que chegou a hora<br />de olhar para dentro.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="sobre" id="sobre">
+    <div class="sobre__decorative" aria-hidden="true">B</div>
+    <div class="sobre__inner">
+      <div class="sobre__image-block reveal-left">
+        <div class="sobre__img-wrap">
+          <div class="sobre__img-placeholder"></div>
+        </div>
+        <div class="sobre__crp">CRP 16/09314</div>
+      </div>
+      <div class="sobre__content reveal-right">
+        <span class="section-label">sobre mim</span>
+        <h2 class="sobre__headline">
+          Sou Bruna C. Alves,<br />
+          <em>Psicóloga Clínica.</em>
+        </h2>
+        <p class="sobre__text">
+          Graduada em Psicologia pela Faculdade Multivix e pós-graduada em Saúde Mental pela Faculdade Estácio de Sá,
+          acredito que a terapia é um espaço de descoberta — não de julgamento.
+        </p>
+        <p class="sobre__text">
+          Minha atuação é voltada para mulheres que carregam muito e cuidam pouco de si. Trabalho com ansiedade, trauma,
+          autoestima e relacionamentos com ética, responsabilidade clínica e profundo compromisso com seu avanço
+          terapêutico.
+        </p>
+        <div class="sobre__badges">
+          <div class="badge reveal-up delay-1">
+            <span class="badge__title">Psicologia</span>
+            <span class="badge__sub">Multivix</span>
+          </div>
+          <div class="badge reveal-up delay-2">
+            <span class="badge__title">Pós-graduação</span>
+            <span class="badge__sub">Saúde Mental · Estácio</span>
+          </div>
+          <div class="badge reveal-up delay-3">
+            <span class="badge__title">Atendimento</span>
+            <span class="badge__sub">Online · Nacional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESPECIALIDADES -->
+  <section class="areas" id="areas">
+    <div class="areas__inner">
+      <div class="areas__header">
+        <span class="section-label reveal-up">áreas de atuação</span>
+        <h2 class="areas__headline reveal-up delay-1">
+          O que trabalhamos<br /><em>juntas</em>
+        </h2>
+      </div>
+      <div class="areas__grid">
+        <div class="area-card reveal-up delay-1">
+          <div class="area-card__num">01</div>
+          <h3 class="area-card__title">Ansiedade</h3>
+          <p class="area-card__text">Entender os gatilhos, regulação emocional e construir uma relação mais leve com
+            seus pensamentos.</p>
+        </div>
+        <div class="area-card reveal-up delay-2">
+          <div class="area-card__num">02</div>
+          <h3 class="area-card__title">Trauma</h3>
+          <p class="area-card__text">Reprocessar experiências que ainda moldam suas escolhas e reações no presente.</p>
+        </div>
+        <div class="area-card reveal-up delay-3">
+          <div class="area-card__num">03</div>
+          <h3 class="area-card__title">Autoestima</h3>
+          <p class="area-card__text">Reconstruir a relação consigo mesma, seus limites, seu valor e sua identidade.</p>
+        </div>
+        <div class="area-card reveal-up delay-4">
+          <div class="area-card__num">04</div>
+          <h3 class="area-card__title">Relacionamentos</h3>
+          <p class="area-card__text">Padrões afetivos, limites, dependência emocional e a arte de se relacionar sem se
+            perder.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="como" id="como-funciona">
+    <div class="como__inner">
+      <div class="como__header">
+        <span class="section-label reveal-up">processo</span>
+        <h2 class="como__headline reveal-up delay-1">Como funciona<br /><em>o atendimento</em></h2>
+      </div>
+      <div class="como__steps">
+        <div class="step reveal-up delay-1">
+          <div class="step__line"></div>
+          <div class="step__dot"></div>
+          <div class="step__content">
+            <span class="step__num">01</span>
+            <h3 class="step__title">Primeiro contato</h3>
+            <p class="step__text">Você envia uma mensagem e conversamos brevemente sobre o que está sentindo e suas
+              expectativas.</p>
+          </div>
+        </div>
+        <div class="step reveal-up delay-2">
+          <div class="step__line"></div>
+          <div class="step__dot"></div>
+          <div class="step__content">
+            <span class="step__num">02</span>
+            <h3 class="step__title">Sessão inicial</h3>
+            <p class="step__text">Nossa primeira sessão online é o começo da escuta. Sem julgamentos, sem pressa.</p>
+          </div>
+        </div>
+        <div class="step reveal-up delay-3">
+          <div class="step__line"></div>
+          <div class="step__dot"></div>
+          <div class="step__content">
+            <span class="step__num">03</span>
+            <h3 class="step__title">Processo terapêutico</h3>
+            <p class="step__text">Sessões semanais com acompanhamento dedicado, respeitando seu ritmo e sua história.
+            </p>
+          </div>
+        </div>
+        <div class="step reveal-up delay-4">
+          <div class="step__dot step__dot--last"></div>
+          <div class="step__content">
+            <span class="step__num">04</span>
+            <h3 class="step__title">Transformação real</h3>
+            <p class="step__text">Você começa a se conhecer de verdade — e a criar a vida que quer ter.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="depo" id="depoimentos">
+    <div class="depo__inner">
+      <div class="depo__header">
+        <span class="section-label reveal-up">depoimentos</span>
+        <h2 class="depo__headline reveal-up delay-1">O que dizem<br /><em>as pacientes</em></h2>
+      </div>
+      <div class="depo__track-wrap">
+        <div class="depo__track" id="depoTrack">
+          <div class="depo-card">
+            <div class="depo-card__stars">★★★★★</div>
+            <p class="depo-card__text">"Nunca imaginei que falar sobre o que sinto poderia ser tão leve. A Bruna tem um
+              jeito único de acolher sem julgar. Hoje me reconheço de um jeito que nunca tinha conseguido."</p>
+            <span class="depo-card__name">— M.S., 32 anos</span>
+          </div>
+          <div class="depo-card">
+            <div class="depo-card__stars">★★★★★</div>
+            <p class="depo-card__text">"Cheguei no limite da ansiedade e hoje consigo respirar. O processo foi
+              transformador. Aprendi que posso cuidar de mim sem culpa."</p>
+            <span class="depo-card__name">— A.R., 27 anos</span>
+          </div>
+          <div class="depo-card">
+            <div class="depo-card__stars">★★★★★</div>
+            <p class="depo-card__text">"Comecei a terapia com medo de me descobrir. Hoje agradeço por cada sessão. A
+              Bruna me ajudou a entender padrões que eu repetia há anos sem perceber."</p>
+            <span class="depo-card__name">— C.L., 38 anos</span>
+          </div>
+          <div class="depo-card">
+            <div class="depo-card__stars">★★★★★</div>
+            <p class="depo-card__text">"O atendimento online foi muito mais fácil do que eu esperava. Sensação de
+              segurança e acolhimento em cada sessão. Recomendo de olhos fechados."</p>
+            <span class="depo-card__name">— P.M., 29 anos</span>
+          </div>
+        </div>
+      </div>
+      <div class="depo__controls">
+        <button class="depo-btn" id="depoPrev" aria-label="anterior">←</button>
+        <div class="depo-dots" id="depoDots"></div>
+        <button class="depo-btn" id="depoNext" aria-label="próximo">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRASE IMPACTO -->
+  <section class="quote-section">
+    <div class="quote-section__inner reveal-up">
+      <blockquote class="quote-section__text">
+        "A vida que você quer ter depende<br />
+        da pessoa que você se dispõe<br />
+        <em>a ser."</em>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- CONTATO / CTA FINAL -->
+  <section class="contato" id="contato">
+    <div class="contato__inner">
+      <div class="contato__left reveal-left">
+        <span class="section-label">vamos começar?</span>
+        <h2 class="contato__headline">
+          Seu espaço de<br />
+          cuidado começa<br />
+          <em>com uma mensagem.</em>
+        </h2>
+        <p class="contato__text">
+          Atendimentos online para todo o Brasil.<br />
+          Agende sua sessão inicial.
+        </p>
+        <div class="contato__info">
+          <a href="[instagram.com](https://instagram.com/brunaalvespsi_)" target="_blank" class="contato__link">
+            <span class="contato__link-icon">@</span>
+            brunaalvespsi_
+          </a>
+          <a href="[linktr.ee](https://linktr.ee/brunac.alvespsi)" target="_blank" class="contato__link">
+            <span class="contato__link-icon">↗</span>
+            linktr.ee/brunac.alvespsi
+          </a>
+        </div>
+      </div>
+      <div class="contato__right reveal-right">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-field">
+            <label for="nome" class="form-label">Seu nome</label>
+            <input type="text" id="nome" name="nome" class="form-input" placeholder="Como posso te chamar?" required />
+          </div>
+          <div class="form-field">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com" required />
+          </div>
+          <div class="form-field">
+            <label for="mensagem" class="form-label">O que te trouxe aqui?</label>
+            <textarea id="mensagem" name="mensagem" class="form-input form-textarea"
+              placeholder="Pode contar um pouquinho..." rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">Quero agendar minha sessão →</button>
+          <p class="form-note">Responderei em até 24 horas com carinho.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__logo">Bruna C. Alves</div>
+      <p class="footer__tagline">Psicóloga Clínica · CRP 16/09314</p>
+      <p class="footer__copy">© 2025 Bruna C. Alves · Todos os direitos reservados · Atendimento psicológico online</p>
+    </div>
+  </footer>
+
+  <script>
+    // ========== REVEAL ON SCROLL ==========
+    const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+
+    const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+      revealElements.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        const revealPoint = 150;
+        if (elementTop < windowHeight - revealPoint) {
+          el.classList.add('visible');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    // ========== TESTIMONIALS CAROUSEL ==========
+    const track = document.getElementById('depoTrack');
+    const prevBtn = document.getElementById('depoPrev');
+    const nextBtn = document.getElementById('depoNext');
+    const dotsContainer = document.getElementById('depoDots');
+    const cards = track.querySelectorAll('.depo-card');
+
+    let currentIndex = 0;
+    let cardsPerView = 3;
+
+    const updateCardsPerView = () => {
+      if (window.innerWidth <= 640) {
+        cardsPerView = 1;
+      } else if (window.innerWidth <= 968) {
+        cardsPerView = 2;
+      } else {
+        cardsPerView = 3;
+      }
+    };
+
+    const totalSlides = () => Math.ceil(cards.length / cardsPerView);
+
+    const createDots = () => {
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < totalSlides(); i++) {
+        const dot = document.createElement('span');
+        if (i === currentIndex) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+      }
+    };
+
+    const updateDots = () => {
+      const dots = dotsContainer.querySelectorAll('span');
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    };
+
+    const goToSlide = (index) => {
+      currentIndex = index;
+      const cardWidth = cards[0].offsetWidth + 16; // including gap
+      const offset = currentIndex * cardsPerView * cardWidth;
+      track.style.transform = `translateX(-${offset}px)`;
+      updateDots();
+    };
+
+    const nextSlide = () => {
+      if (currentIndex < totalSlides() - 1) {
+        goToSlide(currentIndex + 1);
+      } else {
+        goToSlide(0);
+      }
+    };
+
+    const prevSlide = () => {
+      if (currentIndex > 0) {
+        goToSlide(currentIndex - 1);
+      } else {
+        goToSlide(totalSlides() - 1);
+      }
+    };
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    const initCarousel = () => {
+      updateCardsPerView();
+      currentIndex = 0;
+      createDots();
+      goToSlide(0);
+    };
+
+    window.addEventListener('load', initCarousel);
+    window.addEventListener('resize', initCarousel);
+
+    // ========== FORM HANDLING ==========
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const mensagem = document.getElementById('mensagem').value;
+
+      // Create WhatsApp message
+      const whatsappMessage = `Olá, Bruna! Meu nome é ${nome}. ${mensagem}`;
+      const whatsappURL = `[wa.me](https://wa.me/5500000000000?text=${encodeURIComponent(whatsappMessage)})`;
+      
+      // For now, just show an alert (replace with actual submission)
+      alert('Obrigada pela mensagem! Em breve entrarei em contato.');
+      form.reset();
+    });
+
+    // ========== NAV SCROLL EFFECT ==========
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    });
+  </script>
+
+</body>
+
+</html>
